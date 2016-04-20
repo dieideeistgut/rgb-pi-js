@@ -24,12 +24,14 @@ dispatcher.setStatic('resources');
 dispatcher.onGet("/cc", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
 	
-	var color = req.params.c || false;
-	//Do logic
-	if (color)
-		console.log("Set color: " + color);
+	var color = req.params.c;
 	
-    res.end('Page One');
+	assert(color, "Missing parameter: color");
+	
+	//Do logic
+	console.log("Set color: " + color);
+	
+    res.end('Setting color to ' + color);
 });    
 
 //A sample POST request
@@ -46,3 +48,14 @@ server.listen(PORT, function(){
     //Callback triggered when server is successfully listening. Hurray!
     console.log("Server listening on: http://localhost:%s", PORT);
 });
+
+//Some helper methods
+function assert(condition, message) {
+    if (!condition) {
+        message = message || "Assertion failed";
+        if (typeof Error !== "undefined") {
+            throw new Error(message);
+        }
+        throw message; // Fallback
+    }
+}
