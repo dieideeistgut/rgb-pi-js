@@ -14,17 +14,20 @@ dispatcher.setStatic('resources');
 
 //A sample GET request    
 dispatcher.onPost("/", function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.writeHead(200, {'Content-Type': 'text/JSON'});
 	
 	try {
-		console.log(req.body);
-		var c = req.body;
-		assert(c, "Missing parameter: color");
+		var request = JSON.parse(req.body);
 		
 		//Convert any supported format to float array
-		c = color.Color(JSON.parse(c));
+		//var c = color.Color(request);
 	
 		//Do logic
+		var commands = request["commands"];
+		
+		//Hard coded for testing purposes
+		var ccCommand = commands[0];
+		var c = color.Color(ccCommand.color);
 		
 		res.end('Setting color to ' + c);
 	}

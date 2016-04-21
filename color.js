@@ -1,5 +1,28 @@
 var assert = require('./utils').assert;
 
+exports.Color = Color;
+exports.compatColor = compatColor;
+
+/**
+* Translates color from old format (deprecated) to new format (valid JSON)
+* Old format: "{x:FFFFFF}", new format: {"x":"FFFFFF"} (valid JSON)
+*/
+function compatColor(oldFormat) {
+	var format, value, color = {};
+	
+	assert(oldFormat.charAt(0) === "{" && oldFormat.charAt(oldFormat.length - 1) === "}", "Color in compatibility mode must be defined between curly braces: " + oldFormat);
+
+	format = oldFormat.split(":")[0].slice(1);
+	assert(format === "x" || format === "b" || format === "r" || format === "hsv" || format === "hsl", "Wrong format or no format given for color: " + oldFormat);
+
+	value = oldFormat.split(":")[1].slice(0, -1);
+
+	color[format] = value;
+
+	//Overwrite color
+	return color;
+}
+
 
 /**
 * Converts color of any supported format (x = Hex-String, b = Byte-Array, f = Float-Array, r = random, hsv = HSV, hsl = HSL) to float array
@@ -11,8 +34,14 @@ var assert = require('./utils').assert;
 * {hsv:"60, 100, 100"}
 * {hsl:"73, 100, 50}
 */
-exports.Color = function(color) {
+function Color(color) {
 	assert(color, "Missing parameter: color");
+
+	//Old format
+	if (typeof color === "string") {
+		color = compatColor(color);
+	}
+	
 	assert(color.x || color.b || color.f || color.r || color.hsv || color.hsl, "Wrong format or no format given for color: " + color)
 	
 	//Hex string
@@ -53,6 +82,9 @@ exports.Color = function(color) {
 		return fn(values);
 	}
 }
+
+
+
 function hexStringToFloatArray(hexString) {
 	assert(hexString.length === 3 || hexString.length === 6, "Hex string must be 3 or 6 characters long");
 	
