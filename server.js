@@ -13,12 +13,12 @@ dispatcher.setStatic('resources');
 
 
 //A sample GET request    
-dispatcher.onGet("/", function(req, res) {
+dispatcher.onPost("/", function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
 	
 	try {
-		console.log(req.params);
-		var c = req.params.c;
+		console.log(req.body);
+		var c = req.body;
 		assert(c, "Missing parameter: color");
 		
 		//Convert any supported format to float array
