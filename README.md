@@ -20,6 +20,11 @@ SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio", MODE="0660"
 EOF
 ```
 
+**Start with:**
+```bash
+node server.js
+```
+
 
 ## Contributors
 [realkyton](https://github.com/realkyton)  
