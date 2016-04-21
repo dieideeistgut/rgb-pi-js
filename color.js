@@ -13,8 +13,6 @@ function compatColor(oldFormat) {
 	assert(oldFormat.charAt(0) === "{" && oldFormat.charAt(oldFormat.length - 1) === "}", "Color in compatibility mode must be defined between curly braces: " + oldFormat);
 
 	format = oldFormat.split(":")[0].slice(1);
-	assert(format === "x" || format === "b" || format === "r" || format === "hsv" || format === "hsl", "Wrong format or no format given for color: " + oldFormat);
-
 	value = oldFormat.split(":")[1].slice(0, -1);
 
 	color[format] = value;
