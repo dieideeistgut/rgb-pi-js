@@ -12,7 +12,7 @@ npm install httpdispatcher
 npm install rpio
 ```
 
-[node-rpio](https://github.com/jperkin/node-rpio) requires the user to be a member of the `gpio`group, such that the user can access `/dev/gpiomem` which is being used by the module. You may need to configure udev with the following rule:
+[node-rpio](https://github.com/jperkin/node-rpio) requires the user to be a member of the `gpio` group, such that the user can access `/dev/gpiomem` which is being used by the module. You may need to configure udev with the following rule:
 
 ```bash
 sudo cat >/etc/udev/rules.d/20-gpiomem.rules <<EOF
