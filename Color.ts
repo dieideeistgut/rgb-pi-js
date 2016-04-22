@@ -40,7 +40,7 @@ import {Utils} from "./Utils";
 		/**
 		 * Converts color of any supported format (x = Hex-String, b = Byte-Array, f = Float-Array, r = random, hsv = HSV, hsl = HSL) to float array
 		 */
-		convert(color) {
+		convert(color: any) {
 			//Compatibility
 			if (typeof color === "string") {
 				color = this.compatColor(color);
@@ -92,7 +92,7 @@ import {Utils} from "./Utils";
 		 * Compatibility method. Converts color of old format to new format.
 		 */
 		compatColor(oldFormat: string) {
-			let format: string, value: string, color = {};
+			let format: string, value: string, color: any = {};
 		
 			Utils.assert(oldFormat.charAt(0) === "{" && oldFormat.charAt(oldFormat.length - 1) === "}", "Color in compatibility mode must be defined between curly braces: " + oldFormat);
 

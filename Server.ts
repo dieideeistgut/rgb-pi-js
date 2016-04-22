@@ -1,4 +1,4 @@
-declare function require(name:string);		//Tell the TypeScript compiler that the method require() will exist at runtime
+declare function require(name:string): any;		//Tell the TypeScript compiler that the method require() will exist at runtime
 
 //Require / Import
 var http = require('http');
@@ -24,7 +24,7 @@ module RGBPi {
 			dispatcher.setStatic('resources');
 
 			//A sample GET request    
-			dispatcher.onPost("/", function(req, res) {
+			dispatcher.onPost("/", function(req: any, res: any) {
 				res.writeHead(200, {'Content-Type': 'text/JSON'});
 				
 				try {
@@ -45,15 +45,18 @@ module RGBPi {
 					res.end(m);
 				}
 			});
+			
+			
+			
 			//Fade mock
-			function fade(timeInSecs, endColor, startColor) {
+			function fade(timeInSecs: number, endColor: Color, startColor: Color) {
 				
 			}
 
 
 
 			//Handles a request
-			function handleRequest(request, response){
+			function handleRequest(request: any, response: any){
 				try {
 					dispatcher.dispatch(request, response);
 				} catch(err) {
