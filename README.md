@@ -8,6 +8,7 @@ Controlling RGB LED stripes using a Raspberry Pi and a mobile device
 ## Installation
 
 ```bash
+npm install -g typescript
 npm install httpdispatcher
 npm install rpio
 ```
@@ -20,8 +21,15 @@ SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio", MODE="0660"
 EOF
 ```
 
+After that you need to compile the TypeScript files into plain JavaScript by running.
+
+```bash
+tsc
+```
+
 **Start with:**
 ```bash
+cd dist
 node server.js
 ```
 
