@@ -1,0 +1,17 @@
+{
+  "name": "rgb-pi-js",
+  "version": "0.1.0",
+  "description": "A JavaScript / NodeJS port of rgb-pi",
+  "main": "dist/Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BenjaminDieter",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-tsc": "^1.1.5",
+    "node": "0.0.0",
+    "request": "^2.72.0"
+  }
+}
