@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "dist/rgb-pi-js.js",
+        "sourceMap": true
+    },
+    "exclude": [
+        "dist"
+    ]
+}
