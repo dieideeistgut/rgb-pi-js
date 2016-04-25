@@ -22,7 +22,7 @@ EOF`
 
 
 ## Contributors
-[realkyton](https://github.com/realkyton)  
+[BenjaminDieter](https://github.com/BenjaminDieter)  
 [ryupold](https://github.com/ryupold)
 
 ## License
