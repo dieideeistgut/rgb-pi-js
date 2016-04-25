@@ -4,32 +4,21 @@
 Controlling RGB LED stripes using a Raspberry Pi and a mobile device
 
 
+## Getting Started
 
-## Installation
+* Clone this repository.
+* Run `npm install` from the project root.
+* [node-rpio](https://github.com/jperkin/node-rpio) requires the user to be a member of the `gpio` group, such that the user can access `/dev/gpiomem` which is being used by the module. You may need to configure udev with the following rule:
 
-```bash
-npm install
-```
-
-[node-rpio](https://github.com/jperkin/node-rpio) requires the user to be a member of the `gpio` group, such that the user can access `/dev/gpiomem` which is being used by the module. You may need to configure udev with the following rule:
-
-```bash
+`
 sudo cat >/etc/udev/rules.d/20-gpiomem.rules <<EOF
 SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio", MODE="0660"
-EOF
-```
+EOF`
+* Compile the TypeScript files by running `tsc`
+* Navigate to the dist folder: `cd dist`
+* Run the server with `node Server.js`
+* Profit
 
-After that you need to compile the TypeScript files into plain JavaScript by running.
-
-```bash
-tsc
-```
-
-**Start with:**
-```bash
-cd dist
-node server.js
-```
 
 
 ## Contributors
