@@ -13,7 +13,26 @@ module RGBPi {
 	
 	class RGBPiServer {
 		
+		server: any;
+		private config: Config;
+		private configChangedCallback: Function;
+		
 		constructor() {
+			//Create a server
+			this.server = http.createServer(this.handleRequest);
+			
+			//Listen to EADDRINUSE (port already in use)			
+			this.server.on('error', (function(err: any) { 
+				if (err.code === "EADDRINUSE") { 
+					console.log("Port already in use. Retrying in "+this.config.getTimeout()+" seconds...");
+					setTimeout((function() {
+						this.startListening();
+					}).bind(this), this.config.getTimeout() * 1000); 
+				}
+			}).bind(this));
+			
+			this.configChangedCallback = this.configChanged;
+			this.config = new Config(this.configChangedCallback.bind(this));
 			this.run();
 		}
 		
@@ -46,39 +65,54 @@ module RGBPi {
 				}
 			});
 			
-			
-			
-			//Fade mock
-			function fade(timeInSecs: number, endColor: Color, startColor: Color) {
-				
-			}
-
-
-
-			//Handles a request
-			function handleRequest(request: any, response: any){
-				try {
-					dispatcher.dispatch(request, response);
-				} catch(err) {
-					console.log(err);
-				}
-			}
-
-
-
-			//Create a server
-			var server = http.createServer(handleRequest);
-
-
 
 			//Lets start our server
-			server.listen(Config.PORT, function(){
-				//Callback triggered when server is successfully listening.
-				console.log("Server listening on: http://localhost:%s", Config.PORT);
+			this.startListening();
+		}
+		
+		
+		
+		//Handles a request
+		private handleRequest(request: any, response: any){
+			try {
+				dispatcher.dispatch(request, response);
+			} catch(err) {
+				console.log(err);
+			}
+		}
+		
+		
+		
+		/**
+		 * Starts listening
+		 */
+		private startListening(): void {
+			var port: number = this.config.getPort();
+			
+			try {
+				this.server.listen(port,  function() {
+					console.log("Server listening on: http://localhost:%s", port);
+				});
+			}
+			catch (e) {
+				console.log(e.message);
+			}
+		}
+
+
+
+		/**
+		 * Stops listening and starts again with updated config
+		 */		
+		private configChanged(): void {
+			this.server.close(function() {
+				console.log("Stopped listening..");
 			});
+			this.startListening();
 		}
 		
 	}
+	
 	
 	//Start Server
 	let s: RGBPiServer = new RGBPiServer();
