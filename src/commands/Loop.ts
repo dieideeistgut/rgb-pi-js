@@ -16,7 +16,9 @@ export class Loop extends Command {
      */
     constructor(commands: Command[], condition: any) {
         super();
-        this.commands = commands;   
+        this.commands = commands;
+        
+        //Once the condition switches to false, it calls the given callback method (this.stop()), which stops the execution
         this.condition = new Condition(condition, this.stop); 
     }
     
