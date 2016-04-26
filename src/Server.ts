@@ -39,7 +39,7 @@ module RGBPi {
 			
 			//Using connect
 			var app = connect()
-				.use(favicon(__dirname + '/pub/img/favicon.ico'))
+				.use(favicon(__dirname + '/pub/images/favicon.ico'))
 				.use('/admin', connect_static(__dirname + '/pub', {fallthrough: false}))
 				.use(bodyParser.json({ type: '*/*' }))
 				.use(
