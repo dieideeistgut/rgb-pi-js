@@ -71,7 +71,7 @@ export class Color extends DataTypes.DataType {
 		//HSV
 		else if (color.hsv) {
 			values = color.hsv.split(",");
-			fn = this.hsvToFloatArray;
+			fn = this.hsvToFloatArray.bind(this);
 		}
 		//HSL
 		else if (color.hsl) {
@@ -181,6 +181,20 @@ export class Color extends DataTypes.DataType {
 			case 5: r = v, g = p, b = q; break;
 		}
 		return this.byteArrayToFloatArray([Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)]);
+	}
+	
+	
+	
+	/**
+	 * Returns a byte array
+	 */
+	getByteArray(): number[] {
+		let result: number[] = [];
+		
+		result[0] = this.c[0] * 255;
+		result[1] = this.c[1] * 255;
+		result[2] = this.c[2] * 255;				
+		return result;
 	}
 	
 	
