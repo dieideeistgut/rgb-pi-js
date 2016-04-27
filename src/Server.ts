@@ -35,7 +35,6 @@ module RGBPi {
 			
 			this.configChangedCallback = this.configChanged;
 			this.config = new Config(this.configChangedCallback.bind(this));
-			// this.run();
 			
 			//Using connect
 			var app = connect()
@@ -75,22 +74,7 @@ module RGBPi {
 				.listen(1234);
 			
 		}
-		
-		//Run server
-		run() {
-
-			// //For all your static (js/css/images/etc.) set the directory name (relative path).
-			// dispatcher.setStatic('resources');
-
-			// //A sample GET request    
-			// dispatcher.onPost("/", function(req: any, res: any) {
-			// 	res.writeHead(200, {'Content-Type': 'text/JSON'});
-			
-
-			// //Lets start our server
-			// this.startListening();
-		}
-		
+	
 		
 		
 		//Handles a request

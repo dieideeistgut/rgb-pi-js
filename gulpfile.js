@@ -1,17 +1,23 @@
-var gulp = require('gulp');
-var typescript = require('gulp-tsc');
+var gulp = require('gulp'),
+    typescript = require('gulp-tsc'),
+    gutil = require('gulp-util');
 
-gulp.task('default', ['compile-debug']);
+gulp.task('default', ['watch']);
 
 
-gulp.task('compile-debug', function() {
+gulp.task('compile', function() {
     return gulp.src("src/**/*.ts")
         .pipe(typescript())
         .pipe(gulp.dest("dist"));
 });
 
+gulp.task('copy-pub', function() {
+        gutil.log("Copying public files.");
+   return gulp.src("src/pub/**/*").pipe(gulp.dest("dist/pub")); 
+});
+
 gulp.task('watch', function() {
-    gulp.watch(["src/**/*.ts"], ['compile-debug']);
+    return gulp.watch(["src/**/*.ts", "src/pub/**/*"], ['compile', 'copy-pub']);
 });
 
 gulp.task('clean', function() {

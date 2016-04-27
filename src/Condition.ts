@@ -53,6 +53,7 @@ export class Condition extends DataTypes.DataType {
     
     
     
+    
     /**
 	 * Parses condition of any supported format (b = Constant boolean value, t = Time in seconds, i = Iterations, C = While current Color is different)
 	 */
