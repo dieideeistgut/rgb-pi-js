@@ -4,6 +4,9 @@ var gulp = require('gulp'),
 
 gulp.task('default', ['watch']);
 
+gulp.task('install', ['build', 'run']);
+gulp.task('build', ['compile', 'copy-pub']);
+
 
 gulp.task('compile', function() {
     return gulp.src("src/**/*.ts")
@@ -15,6 +18,7 @@ gulp.task('copy-pub', function() {
         gutil.log("Copying public files.");
    return gulp.src("src/pub/**/*").pipe(gulp.dest("dist/pub")); 
 });
+
 
 gulp.task('watch', function() {
     return gulp.watch(["src/**/*.ts", "src/pub/**/*"], ['compile', 'copy-pub']);
