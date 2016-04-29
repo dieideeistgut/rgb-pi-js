@@ -1,6 +1,6 @@
 # rgb-pi-js
 
-### Controlling RGB LED stripes using a Raspberry Pi and a mobile device
+### Controlling RGB LED strips using a Raspberry Pi and a mobile device
 
 ##### _A JavaScript / NodeJS port of [rgb-pi](https://github.com/ryupold/rgb-pi)_
 
