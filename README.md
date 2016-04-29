@@ -6,7 +6,9 @@
 
 
 
-This project provides a server, written in TypeScript / NodeJS, which controls one  RGB LED strip attached to the Raspberry Pi's GPIO pins _(in the future we will support more than one)_. The server, once running, can be reached via HTTP requests. The _[request protocol](http://htmlpreview.github.io/?https://github.com/ryupold/rgb-pi/blob/master/doc/protocol.html)_ is also still in development.
+This project provides a server, written in TypeScript / NodeJS, which controls one  RGB LED strip attached to the Raspberry Pi's GPIO pins. In the future we will support controlling multiple strips independently at a time. Until then you can power multiple strips with the same color.
+
+The server, once running, can be reached via HTTP requests at the port you configured (default is *4321*). The _[request protocol](http://htmlpreview.github.io/?https://github.com/ryupold/rgb-pi/blob/master/doc/protocol.html)_ is also still in development.
 
 To control the whole thing there are (official) mobile apps planned for various platforms:
 
