@@ -1,8 +1,21 @@
-## rgb-pi-js
-**A JavaScript / NodeJS port of [rgb-pi](https://github.com/ryupold/rgb-pi)**
+# rgb-pi-js
 
-Controlling RGB LED stripes using a Raspberry Pi and a mobile device
+### Controlling RGB LED stripes using a Raspberry Pi and a mobile device
 
+##### _A JavaScript / NodeJS port of [rgb-pi](https://github.com/ryupold/rgb-pi)_
+
+
+
+This project provides a server, written in TypeScript / NodeJS, which controls one  RGB LED strip attached to the Raspberry Pi's GPIO pins _(in the future we will support more than one)_. The server, once running, can be reached via HTTP requests. The _[request protocol](http://htmlpreview.github.io/?https://github.com/ryupold/rgb-pi/blob/master/doc/protocol.html)_ is also still in development.
+
+To control the whole thing there are (official) mobile apps planned for various platforms:
+
+* Windows Phone
+* Android
+* Desktop
+* Eventually iOS
+
+Since the servers code is open-source you may develop your own app.
 
 ## Getting Started
 
@@ -19,7 +32,13 @@ EOF`
 * Run the server with `node Server.js`
 * Profit
 
+_still in work, see [rgb-pi](https://github.com/ryupold/rgb-pi) for instructions on how to setup the hardware_
 
+## Configuration
+tbc
+
+## Communication
+tbc
 
 ## Contributors
 [BenjaminDieter](https://github.com/BenjaminDieter)  
