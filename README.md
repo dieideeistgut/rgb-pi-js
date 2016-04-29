@@ -14,7 +14,7 @@ Controlling RGB LED stripes using a Raspberry Pi and a mobile device
 sudo cat >/etc/udev/rules.d/20-gpiomem.rules <<EOF
 SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio", MODE="0660"
 EOF`
-* Compile the TypeScript files by running `tsc`
+* Run `gulp build` from the project root.
 * Navigate to the dist folder: `cd dist`
 * Run the server with `node Server.js`
 * Profit
