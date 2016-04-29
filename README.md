@@ -17,6 +17,18 @@ To control the whole thing there are (official) mobile apps planned for various 
 
 Since the servers code is open-source you may develop your own app.
 
+## Hardware
+#### Prototype
+**IMPORTANT NOTE:**
+We're _no eletricians_ and we take no responsibility or liability, so far as legally possible, for any damages as a result of following the instructions shown below.
+_In other words: We can't and we won't guarantee that your house won't burn down._
+
+The following prototype allows multiple strips to be attached. We recommend using suitable extension cords with pins, such that you can easily plug them into your breadboard.
+
+![Fritzing circuit](https://github.com/BenjaminDieter/rgb-pi-js/blob/master/doc/RGBPi_Steckplatine.png)
+
+See also: [Raspberry Pi + PWM RGB LED Strip](http://mitchtech.net/raspberry-pi-pwm-rgb-led-strip/) at http://mitchtech.net/
+
 ## Getting Started
 
 * Clone this repository.
