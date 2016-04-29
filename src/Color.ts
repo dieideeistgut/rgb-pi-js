@@ -58,7 +58,6 @@ export class Color extends DataTypes.DataType {
 			values = color.b.split(",");
 			fn = this.byteArrayToFloatArray;
 		}
-		
 		//Float Array
 		else if (color.f) {
 			values = color.f.split(",");

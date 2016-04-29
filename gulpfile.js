@@ -4,25 +4,21 @@ var gulp = require('gulp'),
     del = require('del');
     
 //Watching files
-gulp.task('watch', function(cb) {
-    gulp.watch(["src/**/*.ts", "src/**/*.js", "src/**/*.json"], gulp.series('compile'));
-    gulp.watch(["src/pub/**/*"], gulp.series('copy-pub'));
+gulp.task('watch', function() {
+    gulp.watch(["!**tmp**", "src/**/*.ts", "src/**/*.js", "src/**/*.json"], gulp.series('compile'));
+    gulp.watch(["!**tmp**", "src/pub/**/*"], gulp.series('copy-pub'));
+    });
     
-    cb();
-});
 
 //Cleaning dist/
 gulp.task('clean', function() {
     return del(["dist/*"], {force: true});
 });
-    
-//Default tasking. Currently only calling watch
-gulp.task('default', gulp.series('watch'));
 
 //Compiling typescript into dist/
 gulp.task('compile', function() {
     return gulp.src("src/**/*.ts")
-        .pipe(typescript())
+        .pipe(typescript({keepTree: false}))
         .pipe(gulp.dest("dist"));
 });
 
@@ -34,3 +30,6 @@ gulp.task('copy-pub', function() {
 
 //Building the whole thing
 gulp.task('build', gulp.parallel('clean', 'compile', 'copy-pub'));
+    
+//Default tasking. Currently only calling watch
+gulp.task('default', gulp.series('build', 'watch'));

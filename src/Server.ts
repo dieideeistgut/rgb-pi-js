@@ -20,24 +20,15 @@ module RGBPi {
 		private server: any;
 		private config: Config;
 		private configChangedCallback: Function;
+		private app: any;
 		
 		constructor() {
-			
-			// //Listen to EADDRINUSE (port already in use)			
-			// this.server.on('error', (function(err: any) { 
-			// 	if (err.code === "EADDRINUSE") { 
-			// 		console.log("Port already in use. Retrying in "+this.config.getTimeout()+" seconds...");
-			// 		setTimeout((function() {
-			// 			this.startListening();
-			// 		}).bind(this), this.config.getTimeout() * 1000); 
-			// 	}
-			// }).bind(this));
 			
 			this.configChangedCallback = this.configChanged;
 			this.config = new Config(this.configChangedCallback.bind(this));
 			
 			//Using connect
-			var app = connect()
+			this.app = connect()
 				.use(favicon(__dirname + '/pub/images/favicon.ico'))
 				.use('/admin', connect_static(__dirname + '/pub', {fallthrough: false}))
 				.use(bodyParser.json({ type: '*/*' }))
@@ -71,9 +62,22 @@ module RGBPi {
 							console.error(Error.stack);
 						}
 					})
-				.listen(1234);
-			
+					.listen(1234, function() {
+						console.log("Listening on port 1234...");
+					})
+					//Listen to EADDRINUSE (port already in use)			
+					.on('error', (function(err: any) { 
+						if (err.code === "EADDRINUSE") { 
+							console.log("Port already in use. Retrying in "+this.config.getTimeout()+" seconds...");
+							setTimeout((function() {
+								this.startListening();
+							}).bind(this), this.config.getTimeout() * 1000); 
+						}
+					}).bind(this));
+
+	
 		}
+		
 	
 		
 		
@@ -92,6 +96,8 @@ module RGBPi {
 		 * Starts listening
 		 */
 		private startListening(): void {
+			this.server.listen(1234);
+			
 			// var port: number = this.config.getPort();
 			
 			// try {

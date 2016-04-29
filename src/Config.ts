@@ -6,7 +6,7 @@ export class Config {
 	//Default config
 	private DEFAULT_CONFIG = {
 		PORT: 4321,
-		TIMEOUT: 60
+		TIMEOUT: 5
 	}
 	
 	
