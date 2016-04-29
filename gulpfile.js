@@ -1,29 +1,36 @@
 var gulp = require('gulp'),
     typescript = require('gulp-tsc'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+    del = require('del');
+    
+//Watching files
+gulp.task('watch', function(cb) {
+    gulp.watch(["src/**/*.ts", "src/**/*.js", "src/**/*.json"], gulp.series('compile'));
+    gulp.watch(["src/pub/**/*"], gulp.series('copy-pub'));
+    
+    cb();
+});
 
-gulp.task('default', ['watch']);
+//Cleaning dist/
+gulp.task('clean', function() {
+    return del(["dist/*"], {force: true});
+});
+    
+//Default tasking. Currently only calling watch
+gulp.task('default', gulp.series('watch'));
 
-gulp.task('install', ['build', 'run']);
-gulp.task('build', ['compile', 'copy-pub']);
-
-
+//Compiling typescript into dist/
 gulp.task('compile', function() {
     return gulp.src("src/**/*.ts")
         .pipe(typescript())
         .pipe(gulp.dest("dist"));
 });
 
+//Compiling pub/ (Webinterface) into dist/
 gulp.task('copy-pub', function() {
         gutil.log("Copying public files.");
    return gulp.src("src/pub/**/*").pipe(gulp.dest("dist/pub")); 
 });
 
-
-gulp.task('watch', function() {
-    return gulp.watch(["src/**/*.ts", "src/pub/**/*"], ['compile', 'copy-pub']);
-});
-
-gulp.task('clean', function() {
-    return del(["dist"]);
-});
+//Building the whole thing
+gulp.task('build', gulp.parallel('clean', 'compile', 'copy-pub'));
